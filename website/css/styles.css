@@ -1,0 +1,16 @@
+/* Reset Styles */
+*{
+    margin:0;
+    padding: 0;
+}
+
+/* General Styles */
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+
+    
+}
