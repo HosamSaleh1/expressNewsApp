@@ -15,6 +15,19 @@ const cors = require('cors')
 app.use(cors())
 //Initialize the main project folder
 app.use(express.static('website'))
+// Initialize and configer hbs
+const hbs = require('hbs')
+
+hbs.registerPartials('/website/templates/partials')
+app.use('views','website/templates/views')
+
+// Render Index.hbs
+app.get('/',(req,res)=>{
+    res.render('index',{
+        page:'Home Page',
+        name:'Hosam Saleh'
+    })
+})
 
 // Get Route
 app.get('/news',(req,res)=>{
@@ -32,6 +45,15 @@ app.post('/news',(req,res)=>{
     }
 })
 
+
+// Render 404 Page
+app.get('*',(req,res)=>{
+    res.render('404 Page Not Found',{
+        msg:'There is no page with this name',
+        page:'Page Not Found',
+        
+    })
+})
 // Setup Server
 app.listen(port,()=>{
     console.log('Server is running ...')
