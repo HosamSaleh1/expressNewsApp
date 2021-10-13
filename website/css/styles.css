@@ -11,10 +11,12 @@ html{
 }
 
 body{
-background-color: white;
+    display: flex;
+    flex-direction: column;
+background-color: lightblue;
 color: black;
 text-align: center;
-
+align-items: center;
 }
 
 

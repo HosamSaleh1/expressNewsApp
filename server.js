@@ -1,6 +1,8 @@
 // Setup empty JS object to act as endpoint for all routes
 const newsData = []
 const news = require('./website/js/newsAPI')
+const path = require('path')
+
 // Require Express to run server and routes
 const express = require('express')
 const port = 3000
@@ -8,11 +10,19 @@ const port = 3000
 const app = express()
 //Initialize the main project folder
 app.use(express.static('website'))
+
+// MiddelWare
+app.use(express.json())
+
 // Initialize and configer hbs
 const hbs = require('hbs')
 
-hbs.registerPartials('/website/templates/partials')
-app.use('views','website/templates/views')
+// const publicPath = path.join(__dirname + '/website')
+const partialsPath = path.join(__dirname + '/website/templates/partials')
+const viewsPath = path.join(__dirname + "/website/templates/views")
+
+hbs.registerPartials(partialsPath)
+app.use(viewsPath)
 
 // Render Index.hbs
 app.get('/',(req,res)=>{
@@ -23,27 +33,28 @@ app.get('/',(req,res)=>{
 })
 
 // Get Route
-app.get('/news',(req,res)=>{
-    res.status(200).send(newsData)
-})
+// app.get('/news',(req,res)=>{
+//     res.status(200).send(newsData)
+// })
 
 
 
 // Post Route
 app.post('/news',(req,res)=>{
     console.log(req.body)
-    newsData.push(req.body)
+    // newsData.push(req.body)
     // const {title,description,imageUrl} = req.body
     // newsData[title] = {
     //     description,
     //     imageUrl
     // }
-    news(req.body,(error,data)=>{
+    news(req.body.query,(error,data)=>{
         if(error){
             console.log(error)
         }else{
             newsData.push(data)
             console.log(data)
+            res.send(newsData)
         }
     })
 })
@@ -55,7 +66,8 @@ app.post('/news',(req,res)=>{
 //         newsData.push(data)
 //         console.log(data)
 //     }
-})// Render 404 Page
+// })
+// Render 404 Page
 app.get('*',(req,res)=>{
     res.render('404 Page Not Found',{
         msg:'There is no page with this name',
@@ -65,6 +77,6 @@ app.get('*',(req,res)=>{
 })
 // Setup Server
 app.listen(port,()=>{
-    console.log('Server is running ...')
-    console.log(`Server running on localhost: ${port}`)
+    console.log(`Server is running ... on localhost: ${port}`)
 })
+
