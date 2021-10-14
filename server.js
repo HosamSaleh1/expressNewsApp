@@ -9,20 +9,22 @@ const port = 3000
 // Start up an instance of app
 const app = express()
 //Initialize the main project folder
-app.use(express.static('website'))
+const website = path.join(__dirname + '/website')
+app.use(express.static(website))
 
 // MiddelWare
 app.use(express.json())
 
 // Initialize and configer hbs
 const hbs = require('hbs')
+app.set("view engine", "hbs")
 
-// const publicPath = path.join(__dirname + '/website')
 const partialsPath = path.join(__dirname + '/website/templates/partials')
 const viewsPath = path.join(__dirname + "/website/templates/views")
 
+app.set("views", viewsPath)
 hbs.registerPartials(partialsPath)
-app.use(viewsPath)
+
 
 // Render Index.hbs
 app.get('/',(req,res)=>{
