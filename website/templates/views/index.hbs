@@ -12,9 +12,11 @@
 <body>
     {{>header}}
     <div class="container">
-<form id="searchForm" class="">
-    <input type="text" id="title" placeholder="What you search for?!">
-<input type="submit" id="submit" value="GO">
+<form id="searchForm" class="form" action="/" method="post">
+    <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="What are you searching for ?!" aria-label="search" aria-describedby="basic-addon2">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Go</button>
+  </div>
 </form>
 
 <div id="showCard">

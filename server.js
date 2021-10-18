@@ -42,7 +42,7 @@ app.get('/',(req,res)=>{
 
 
 // Post Route
-app.post('/news',(req,res)=>{
+app.post('/',(req,res)=>{
     console.log(req.body)
     // newsData.push(req.body)
     // const {title,description,imageUrl} = req.body
