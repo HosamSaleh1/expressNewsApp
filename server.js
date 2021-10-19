@@ -27,12 +27,12 @@ hbs.registerPartials(partialsPath)
 
 
 // Render Index.hbs
-app.get('/',(req,res)=>{
-    res.render('index',{
-        page:'Home Page',
-        name:'Hosam Saleh'
-    })
-})
+// app.get('/',(req,res)=>{
+//     res.render('index',{
+//         page:'Home Page',
+//         name:'Hosam Saleh'
+//     })
+// })
 
 // Get Route
 // app.get('/news',(req,res)=>{
@@ -42,15 +42,16 @@ app.get('/',(req,res)=>{
 
 
 // Post Route
-app.post('/',(req,res)=>{
+app.get('/',(req,res)=>{
     console.log(req.body)
+    // res.render('index')
     // newsData.push(req.body)
     // const {title,description,imageUrl} = req.body
     // newsData[title] = {
     //     description,
     //     imageUrl
     // }
-    news(req.body.query,(error,data)=>{
+    news((error,data)=>{
         if(error){
             console.log(error)
         }else{

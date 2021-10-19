@@ -12,20 +12,20 @@
 <body>
     {{>header}}
     <div class="container">
-<form id="searchForm" class="form" action="/" method="post">
+{{!-- <form id="searchForm" class="form" action="/" method="post">
     <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="What are you searching for ?!" aria-label="search" aria-describedby="basic-addon2">
     <button class="btn btn-outline-secondary" type="button" id="button-addon2">Go</button>
   </div>
-</form>
+</form> --}}
 
 <div id="showCard">
 {{#each newsData}}
 `<div class="card" style="width: 18rem;">
-<img src="{{imageUrl}}" class="card-img-top" alt="...">
+<img src="{{this.imageUrl}}" class="card-img-top" alt="...">
 <div class="card-body">
-  <h5 class="card-title">{{title}}</h5>
-  <p class="card-text">{{description}}</p>
+  <h5 class="card-title">{{this.title}}</h5>
+  <p class="card-text">{{this.description}}</p>
   <a href="news" class="btn btn-primary">Read More</a>
 </div>
 </div>`

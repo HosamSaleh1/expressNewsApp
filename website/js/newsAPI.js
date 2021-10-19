@@ -1,7 +1,7 @@
 const request = require('request')
 
-const news = (word,callback)=>{
-    const url = `https://newsapi.org/v2/everything?q=${word}&apiKey=705eb8fdef79463785fd709e68626731`
+const news = (callback)=>{
+    const url = `https://newsapi.org/v2/everything?q=egypt&apiKey=705eb8fdef79463785fd709e68626731`
 
     request({url,json:true},(error,response)=>{
         if(error){
