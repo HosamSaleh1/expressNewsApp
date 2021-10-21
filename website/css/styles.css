@@ -3,42 +3,9 @@
     margin:0;
     padding: 0;
 }
-img{
-    loading:'lazy'
-}
 
 /* General Styles */
 
 html{
     scroll-behavior: smooth;
-}
-
-body{
-background-color: lightblue;
-color: black;
-}
-
-#searchForm{
-    text-align: center;
-align-content: center;
-}
-
-header{
-    justify-content: space-between;
-    width: 100%;
-    font-size: 1em;
-    padding: 2% 0%;
-}
-
-footer{
-    justify-content: space-between;
-    height: 75px;
-    width: 100%;
-    background-color: black;
-    color: white;
-    font-size: 1em;
-    position: fixed;
-    bottom: 0;
-    text-align: center;
-    align-content: center;
 }

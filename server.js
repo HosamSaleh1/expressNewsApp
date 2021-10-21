@@ -25,54 +25,38 @@ const viewsPath = path.join(__dirname + "/website/templates/views")
 app.set("views", viewsPath)
 hbs.registerPartials(partialsPath)
 
-
-// Render Index.hbs
-// app.get('/',(req,res)=>{
-//     res.render('index',{
-//         page:'Home Page',
-//         name:'Hosam Saleh'
-//     })
-// })
-
 // Get Route
-// app.get('/news',(req,res)=>{
-//     res.status(200).send(newsData)
-// })
-
-
-
-// Post Route
 app.get('/',(req,res)=>{
-    console.log(req.body)
-    // res.render('index')
-    // newsData.push(req.body)
-    // const {title,description,imageUrl} = req.body
-    // newsData[title] = {
-    //     description,
-    //     imageUrl
-    // }
-    news((error,data)=>{
+    news('egypt',(error,data)=>{
         if(error){
             console.log(error)
         }else{
             newsData.push(data)
-            console.log(data)
-            res.send(newsData)
         }
+        res.render('index',{
+            newsData:newsData
+        })
     })
 })
-// const word = process.argv[2]
-// news(word,(error,data)=>{
-//     if(error){
-//         console.log(error)
-//     }else{
-//         newsData.push(data)
-//         console.log(data)
-//     }
-// })
-// Render 404 Page
+
+app.get('/serch/:word',(req,res)=>{
+    console.log(req)
+    const word = req.params.word
+    console.log(word)
+    news(word,(error,data)=>{
+        if(error){
+            console.log(error)
+        }else{
+            newsData.push(data)
+        }
+        res.send({
+            newsData:newsData
+        })
+    })
+})
+
 app.get('*',(req,res)=>{
-    res.render('404 Page Not Found',{
+    res.render('404page',{
         msg:'There is no page with this name',
         page:'Page Not Found',
 

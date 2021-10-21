@@ -1,9 +1,9 @@
 const request = require('request')
 
-const news = (callback)=>{
-    const url = `https://newsapi.org/v2/everything?q=egypt&apiKey=705eb8fdef79463785fd709e68626731`
+const news = async (word,callback)=>{
+    const url = `https://newsapi.org/v2/everything?q=${word}&apiKey=705eb8fdef79463785fd709e68626731`
 
-    request({url,json:true},(error,response)=>{
+    await request({url,json:true},(error,response)=>{
         if(error){
             callback('Error has occurred', undefined)
         }else if(response.body.status === 'error'){
@@ -15,7 +15,7 @@ const news = (callback)=>{
             {
             title: response.body.articles[i].title,
             description: response.body.articles[i].description,
-            url: response.body.articles[i].url
+            url: response.body.articles[i].urlToImage
         })
     }
     }
